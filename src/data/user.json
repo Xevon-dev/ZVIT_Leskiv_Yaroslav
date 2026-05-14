@@ -1,0 +1,23 @@
+{
+    "user_authorized": false,
+    "current_user": "",
+    "users": [
+        {
+            "login": "jdfgsdf",
+            "email": "sdkf@sdk.com",
+            "parol": "jdfgsdf",
+            "notes": [
+                {
+                    "fish": "іваіваіав",
+                    "weight": "1.4",
+                    "place": "qewrwrer",
+                    "bait": "werwe",
+                    "desc": "werwer",
+                    "weather": "sun",
+                    "date": "14.05.2026",
+                    "time": "08:42"
+                }
+            ]
+        }
+    ]
+}
