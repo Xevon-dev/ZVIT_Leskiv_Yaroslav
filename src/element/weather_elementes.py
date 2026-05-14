@@ -124,7 +124,7 @@ def weather_element():
         controls=[
             ft.Row(
                 controls=[
-                    ft.Text("Щоб дізнатися погоду оберіть місто", style=WEATHER_TEXT),
+                    ft.Text("Щоб дізнатися погоду оберіть місто", weight= ft.FontWeight.BOLD , size= 20),
                     ft.Dropdown(
                         **CITY_DROPDOWN,
                         options=[

@@ -3,7 +3,7 @@ from src.views import *
 
 def main(page: ft.Page):
     page.theme_mode = ft.ThemeMode.LIGHT
-
+    page.padding = 0
     dani = read_json()
     dani["user_authorized"] = False
     dani["current_user"] = ""
@@ -34,14 +34,9 @@ def main(page: ft.Page):
             page.views.append(EncyclopediaView())
         page.update()
 
-
-
-
     async def view_pop(e):
-
         if len(page.views) > 1:
             page.views.pop()
-
             await page.push_route(page.views[-1].route)
 
     page.on_route_change = route_change

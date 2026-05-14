@@ -1,5 +1,5 @@
 import flet as ft
-# from src.element.profile_elements import profile_elements
+from src.element.profile_elements import profile_elements
 from src.element.bottom_appbar import bottom_app_bar
 
 
@@ -19,7 +19,7 @@ class ProfileView(ft.View):
                 ft.Column(
                     controls=[
                         ft.Divider(),
-
+                    profile_elements(page)
                     ],
                     expand=True,
                 ),

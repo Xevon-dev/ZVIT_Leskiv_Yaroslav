@@ -1,6 +1,7 @@
 import flet as ft
 from src.models.audit_register_login import valid_email, audit_parol_letters, audit_parol_numbers
 from src.data.user_json import read_json, save_json
+from datetime import datetime
 
 from src.styles.styles_container import FORM_REGISTER_STYLE
 from src.styles.text_styles import TITLE_TEXT, SUBTITLE_TEXT
@@ -124,7 +125,13 @@ class RegisterView(ft.View):
             self.user_email.error = None
 
         if len(audit_user_parol) < 5:
-            self.user_parol.error = "Пароль повинен містити мінімум 5 символів"
+            self.user_parol.error = "Мінімум 5 символів"
+            has_error = True
+        elif not audit_parol_letters(audit_user_parol):
+            self.user_parol.error = "Додайте літери"
+            has_error = True
+        elif not audit_parol_numbers(audit_user_parol):
+            self.user_parol.error = "Додайте цифри"
             has_error = True
         else:
             self.user_parol.error = None
@@ -152,6 +159,7 @@ class RegisterView(ft.View):
             "login": audit_user_login,
             "email": audit_user_email,
             "parol": audit_user_parol,
+            "created_at": datetime.now().strftime("%d.%m.%Y"),
             "notes": []
         }
 

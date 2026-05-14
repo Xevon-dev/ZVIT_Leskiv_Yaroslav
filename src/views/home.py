@@ -1,11 +1,44 @@
-import flet as ft
+
 from src.data.user_json import *
 from src.element.elementes_home import *
 from src.element.bottom_appbar import *
+from src.styles.button_styles import NAV_BUTTON_STYLE
 
 
 class HomeView(ft.View):
     def __init__(self):
+
+        dani = read_json()
+        is_auth = dani.get("user_authorized", False)
+        current_user = dani.get("current_user", "")
+
+        if is_auth and current_user:
+            app_title = ft.Column(
+                controls=[
+                    ft.Text(
+                        "Рибальський застосунок",
+                        size=20,
+                        weight=ft.FontWeight.BOLD,
+                        color=ft.Colors.BLUE_GREY_900,
+                    ),
+                    ft.Text(
+                        f"Ласкаво просимо, {current_user}!",
+                        size=14,
+                        color=ft.Colors.TEAL_600,
+                        weight=ft.FontWeight.W_500,
+                    ),
+                ],
+                spacing=3,
+                alignment=ft.MainAxisAlignment.CENTER,
+            )
+        else:
+            app_title = ft.Text(
+                "Рибальський застосунок",
+                size=20,
+                weight=ft.FontWeight.BOLD,
+                color=ft.Colors.BLUE_GREY_900,
+            )
+
         super().__init__(
             route="/home",
             controls=[
@@ -14,38 +47,49 @@ class HomeView(ft.View):
                         ft.AppBar(
                             leading=ft.IconButton(
                                 icon=ft.Icons.MENU,
-                                on_click=self.open_drawer
+                                icon_color=ft.Colors.TEAL_600,
+                                on_click=self.open_drawer,
                             ),
-                            title=ft.Text("Рибальський застосунок"),
+                            title=app_title,
+                            bgcolor=ft.Colors.WHITE,
                             actions=[
                                 ft.Row(
                                     controls=[
-                                        ft.TextButton("Профіль", on_click=self.go_profile),
-                                        ft.TextButton(
-                                            "Нотатки рибака",
-                                            on_click=self.go_to_login
+                                        ft.ElevatedButton(
+                                            "Профіль",
+                                            style=NAV_BUTTON_STYLE,
+                                            on_click=self.go_profile,
                                         ),
-                                        ft.TextButton("Прогноз кльову", on_click=self.go_to_fishing_weather),
-                                        ft.TextButton(
+                                        ft.ElevatedButton(
+                                            "Нотатки рибака",
+                                            style=NAV_BUTTON_STYLE,
+                                            on_click=self.go_to_login,
+                                        ),
+                                        ft.ElevatedButton(
+                                            "Прогноз кльову",
+                                            style=NAV_BUTTON_STYLE,
+                                            on_click=self.go_to_fishing_weather,
+                                        ),
+                                        ft.ElevatedButton(
                                             "Енциклопедія",
-                                            on_click=self.go_encyclopedia
+                                            style=NAV_BUTTON_STYLE,
+                                            on_click=self.go_encyclopedia,
                                         ),
                                     ],
-                                    spacing=30,
+                                    spacing=10,
                                 )
                             ],
                         ),
 
                         ft.Column(
                             controls=[
-                                ft.Divider(),
+                                ft.Divider(color=ft.Colors.TEAL_100),
                                 element_home(),
                             ],
                             expand=True,
                         ),
                         bottom_app_bar()
                     ],
-
                 )
             ]
         )
@@ -55,7 +99,6 @@ class HomeView(ft.View):
             on_change=self.drawer_change,
             controls=[
                 ft.Container(height=20),
-
                 ft.NavigationDrawerDestination(
                     icon=ft.Icons.HOME_OUTLINED,
                     selected_icon=ft.Icons.HOME,
@@ -64,7 +107,6 @@ class HomeView(ft.View):
                 ft.NavigationDrawerDestination(
                     icon=ft.Icons.PERSON_OUTLINED,
                     label="Профіль",
-
                 ),
                 ft.NavigationDrawerDestination(
                     icon=ft.Icons.BOOK_OUTLINED,
@@ -78,15 +120,12 @@ class HomeView(ft.View):
                     icon=ft.Icons.BOOKMARK_OUTLINED,
                     label="Енциклопедія рибака",
                 ),
-
             ]
         )
-
         await self.page.show_drawer()
 
     async def drawer_change(self, e):
         index = e.control.selected_index
-
         await self.page.close_drawer()
 
         if index == 0:
@@ -94,7 +133,6 @@ class HomeView(ft.View):
 
         elif index == 1:
             dani = read_json()
-
             if dani["user_authorized"]:
                 await self.page.push_route("/profile")
             else:
@@ -103,10 +141,7 @@ class HomeView(ft.View):
                         title=ft.Text("Потрібно увійти"),
                         content=ft.Text("Увійдіть в акаунт для доступу до профілю"),
                         actions=[
-                            ft.TextButton(
-                                "Увійти",
-                                on_click=self.go_to_login_or_register
-                            )
+                            ft.TextButton("Увійти", on_click=self.go_to_login_or_register)
                         ],
                         open=True,
                     )
@@ -114,7 +149,6 @@ class HomeView(ft.View):
 
         elif index == 2:
             dani = read_json()
-
             if dani["user_authorized"]:
                 await self.page.push_route("/notes")
             else:
@@ -123,10 +157,7 @@ class HomeView(ft.View):
                         title=ft.Text("Потрібно увійти"),
                         content=ft.Text("Увійдіть в акаунт для доступу до нотаток"),
                         actions=[
-                            ft.TextButton(
-                                "Увійти",
-                                on_click=self.go_to_login_or_register
-                            )
+                            ft.TextButton("Увійти", on_click=self.go_to_login_or_register)
                         ],
                         open=True,
                     )
@@ -140,22 +171,15 @@ class HomeView(ft.View):
 
     async def go_to_login(self, e):
         dani = read_json()
-
         if dani["user_authorized"]:
             await self.page.push_route("/notes")
-
         else:
             self.page.show_dialog(
                 ft.AlertDialog(
                     title=ft.Text("Потрібно увійти"),
-                    content=ft.Text(
-                        "Увійдіть в акаунт для доступу до нотаток"
-                    ),
+                    content=ft.Text("Увійдіть в акаунт для доступу до нотаток"),
                     actions=[
-                        ft.TextButton(
-                            "Ок",
-                            on_click=self.go_to_login_or_register
-                        )
+                        ft.TextButton("Ок", on_click=self.go_to_login_or_register)
                     ],
                     open=True,
                 )
@@ -166,20 +190,15 @@ class HomeView(ft.View):
 
     async def go_profile(self, e):
         dani = read_json()
-
         if dani["user_authorized"]:
             await self.page.push_route("/profile")
-
         else:
             self.page.show_dialog(
                 ft.AlertDialog(
                     title=ft.Text("Потрібно увійти"),
                     content=ft.Text("Увійдіть в акаунт для доступу до профілю"),
                     actions=[
-                        ft.TextButton(
-                            "Увійти",
-                            on_click=self.go_to_login_or_register
-                        )
+                        ft.TextButton("Увійти", on_click=self.go_to_login_or_register)
                     ],
                     open=True,
                 )

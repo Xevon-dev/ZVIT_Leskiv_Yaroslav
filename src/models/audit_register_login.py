@@ -1,7 +1,7 @@
 import re
 
 def valid_email(email):
-    template = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    template = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$'
 
     if re.match(template , email):
         return True
