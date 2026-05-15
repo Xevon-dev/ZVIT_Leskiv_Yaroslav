@@ -1,6 +1,5 @@
-import flet as ft
-
-
+from src.element.encyclopedia_element import *
+from src.element.bottom_appbar import bottom_app_bar
 class EncyclopediaView(ft.View):
     def __init__(self):
         super().__init__(
@@ -15,9 +14,17 @@ class EncyclopediaView(ft.View):
                     ),
                 ),
 
-                ft.Divider(),
+                ft.Column(
+                    controls=[
+                        ft.Divider(),
+                        encyclopedia_elements()
+                    ],
+                    expand=True,
+                    scroll=ft.ScrollMode.AUTO,
+                ),
+                bottom_app_bar()
 
-                ft.Text("Сторінка енцеклопедія")
+
             ]
         )
 
