@@ -7,7 +7,7 @@ PRIMARY_BUTTON_STYLE = ft.ButtonStyle(
     overlay_color=ft.Colors.with_opacity(0.15, ft.Colors.WHITE),
     elevation=2,
     shape=ft.RoundedRectangleBorder(radius=10),
-    padding=ft.padding.symmetric(horizontal=40, vertical=16),
+    padding=ft.Padding.symmetric(horizontal=40, vertical=16),
     text_style=ft.TextStyle(
         size=15,
         weight=ft.FontWeight.BOLD,
@@ -23,7 +23,7 @@ NAV_BUTTON_STYLE = ft.ButtonStyle(
     elevation=0,
     shadow_color=ft.Colors.with_opacity(0.12, ft.Colors.BLUE_300),
     shape=ft.RoundedRectangleBorder(radius=10),
-    padding=ft.padding.symmetric(horizontal=22, vertical=11),
+    padding=ft.Padding.symmetric(horizontal=22, vertical=11),
     side=ft.BorderSide(1.5, ft.Colors.BLUE_200),
     text_style=ft.TextStyle(
         size=14,

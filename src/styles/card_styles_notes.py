@@ -7,14 +7,14 @@ NOTE_CARD = {
 }
 
 NOTE_CARD_CONTAINER = {
-    "padding": ft.padding.symmetric(horizontal=20, vertical=16),
+    "padding": ft.Padding.symmetric(horizontal=20, vertical=16),
     "border_radius": 12,
 }
 
 SORT_BUTTON = {
     "style": ft.ButtonStyle(
         shape=ft.RoundedRectangleBorder(radius=6),
-        padding=ft.padding.symmetric(horizontal=20, vertical=12),
+        padding=ft.Padding.symmetric(horizontal=20, vertical=12),
         text_style=ft.TextStyle(size=14),
     ),
 }
@@ -56,7 +56,7 @@ EDIT_ICON = {
     "icon_size": 20,
     "tooltip": "Редагувати",
     "icon_color": ft.Colors.BLUE_GREY_300,
-    "padding": ft.padding.all(4),
+    "padding": ft.Padding.all(4),
 }
 
 
@@ -65,5 +65,5 @@ DELETE_ICON = {
     "icon_size": 20,
     "tooltip": "Видалити",
     "icon_color": ft.Colors.RED_300,
-    "padding": ft.padding.all(4),
+    "padding": ft.Padding.all(4),
 }

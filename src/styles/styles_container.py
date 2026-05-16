@@ -6,7 +6,7 @@ FORM_LOGIN_STYLE = {
     "padding": 36,
     "bgcolor": ft.Colors.WHITE,
     "border_radius": 20,
-    "border": ft.border.all(1, ft.Colors.BLUE_100),
+    "border": ft.Border.all(1, ft.Colors.BLUE_100),
     "shadow": ft.BoxShadow(
         color=ft.Colors.with_opacity(0.10, ft.Colors.BLUE_900),
         blur_radius=30,
@@ -19,7 +19,7 @@ FORM_REGISTER_STYLE = {
     "padding": 36,
     "bgcolor": ft.Colors.WHITE,
     "border_radius": 20,
-    "border": ft.border.all(1, ft.Colors.BLUE_100),
+    "border": ft.Border.all(1, ft.Colors.BLUE_100),
     "shadow": ft.BoxShadow(
         color=ft.Colors.with_opacity(0.10, ft.Colors.BLUE_900),
         blur_radius=30,

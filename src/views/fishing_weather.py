@@ -30,7 +30,7 @@ class FishingWeatherViews(ft.View):
                                 size=15,
                                 weight=ft.FontWeight.BOLD,
                             ),
-                            padding=ft.padding.only(right=15),
+                            padding=ft.Padding.only(right=15),
                             alignment=ft.Alignment.CENTER,
                         )
                     ],

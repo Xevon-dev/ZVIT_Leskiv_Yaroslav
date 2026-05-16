@@ -3,10 +3,10 @@ import flet as ft
 
 WEATHER_CARD = {
     "width": 280,
-    "padding": ft.padding.all(20),
+    "padding": ft.Padding.all(20),
     "border_radius": 16,
     "bgcolor": ft.Colors.WHITE,
-    "border": ft.border.all(1, ft.Colors.BLUE_100),
+    "border": ft.Border.all(1, ft.Colors.BLUE_100),
     "shadow": ft.BoxShadow(
         blur_radius=12,
         color=ft.Colors.with_opacity(0.1, ft.Colors.BLUE_900),
@@ -48,5 +48,5 @@ RECOMMEND_BTN = ft.ButtonStyle(
     color=ft.Colors.WHITE,
     bgcolor=ft.Colors.DEEP_PURPLE_400,
     shape=ft.RoundedRectangleBorder(radius=20),
-    padding=ft.padding.symmetric(horizontal=20, vertical=10),
+    padding=ft.Padding.symmetric(horizontal=20, vertical=10),
 )

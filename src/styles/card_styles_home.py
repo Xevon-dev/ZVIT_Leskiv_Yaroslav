@@ -23,7 +23,7 @@ FISH_CARD = {
 FISH_CONTAINER = {
     "border_radius": 14,
     "bgcolor": ft.Colors.WHITE,
-    "border": ft.border.all(1, ft.Colors.BLUE_100),
+    "border": ft.Border.all(1, ft.Colors.BLUE_100),
     "shadow": ft.BoxShadow(
         blur_radius=14,
         color=ft.Colors.with_opacity(0.10, ft.Colors.BLUE_600),
@@ -61,7 +61,7 @@ TIP_CARD = {
 TIP_CONTAINER = {
     "border_radius": 14,
     "bgcolor": ft.Colors.WHITE,
-    "border": ft.border.all(1, ft.Colors.BLUE_100),
+    "border": ft.Border.all(1, ft.Colors.BLUE_100),
     "shadow": ft.BoxShadow(
         blur_radius=16,
         color=ft.Colors.with_opacity(0.10, ft.Colors.BLUE_900),

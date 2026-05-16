@@ -104,10 +104,10 @@ def profile_elements(page: ft.Page):
                 tf_password.error = "Мінімум 5 символів"
                 return
             elif not audit_parol_letters(new_pass):
-                tf_password.error = "Додайте літери пароль повинен бути надійний"
+                tf_password.error = "Додайте літери"
                 return
             elif not audit_parol_numbers(new_pass):
-                tf_password.error = "Додайте цифри пароль повинен бути надійний"
+                tf_password.error = "Додайте цифри"
                 return
             else:
                 tf_password.error = None

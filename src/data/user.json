@@ -1,6 +1,6 @@
 {
-    "user_authorized": false,
-    "current_user": "",
+    "user_authorized": true,
+    "current_user": "andrii",
     "users": [
         {
             "login": "jdfgsdf",
@@ -99,8 +99,8 @@
         },
         {
             "login": "andrii",
-            "email": "qwerty@gmail.com",
-            "parol": "12345qwer",
+            "email": "qzdcwerty@gmail.com",
+            "parol": "sdfsdfs34",
             "created_at": "14.05.2026",
             "notes": []
         }

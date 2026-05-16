@@ -83,10 +83,10 @@ def weather_element():
     local_rec_box = ft.Container(
         visible=False,
         width=420,
-        padding=ft.padding.all(20),
+        padding=ft.Padding.all(20),
         border_radius=16,
         bgcolor=ft.Colors.WHITE,
-        border=ft.border.all(1, ft.Colors.BLUE_100),
+        border=ft.Border.all(1, ft.Colors.BLUE_100),
         shadow=ft.BoxShadow(
             blur_radius=12,
             color=ft.Colors.with_opacity(0.1, ft.Colors.BLUE_900),

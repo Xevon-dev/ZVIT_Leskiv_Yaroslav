@@ -24,7 +24,7 @@ class HomeView(ft.View):
                     ft.Text(
                         f"Ласкаво просимо, {current_user}!",
                         size=14,
-                        color=ft.Colors.TEAL_600,
+                        color=ft.Colors.GREY_600,
                         weight=ft.FontWeight.W_500,
                     ),
                 ],

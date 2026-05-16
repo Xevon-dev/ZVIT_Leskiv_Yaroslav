@@ -51,7 +51,7 @@ RIGHT_COLUMN = {
 TOP_CARD = {
     "bgcolor": ft.Colors.WHITE,
     "border_radius": 16,
-    "border": ft.border.all(1, ft.Colors.BLUE_GREY_100),
+    "border": ft.Border.all(1, ft.Colors.BLUE_GREY_100),
     "shadow": ft.BoxShadow(
         blur_radius=16,
         color=ft.Colors.with_opacity(0.07, ft.Colors.BLUE_900),
@@ -64,10 +64,10 @@ TOP_CARD_ROW = {
 }
 
 STAT_BOX = {
-    "padding": ft.padding.symmetric(horizontal=16, vertical=10),
+    "padding": ft.Padding.symmetric(horizontal=16, vertical=10),
     "border_radius": 12,
     "bgcolor": ft.Colors.TEAL_50,
-    "border": ft.border.all(1, ft.Colors.TEAL_100),
+    "border": ft.Border.all(1, ft.Colors.TEAL_100),
 }
 
 STAT_ROW = {
