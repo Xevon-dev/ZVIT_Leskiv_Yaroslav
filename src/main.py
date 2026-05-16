@@ -3,11 +3,10 @@ from src.views import *
 
 def main(page: ft.Page):
     page.theme_mode = ft.ThemeMode.LIGHT
-    page.padding = 0
-    dani = read_json()
-    dani["user_authorized"] = False
-    dani["current_user"] = ""
-    save_json(dani)
+    # dani = read_json()
+    # dani["user_authorized"] = False
+    # dani["current_user"] = ""
+    # save_json(dani)
 
     def route_change():
         page.views.clear()

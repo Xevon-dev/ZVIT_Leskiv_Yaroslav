@@ -1,5 +1,4 @@
 import flet as ft
-from src.data.user_json import read_json, save_json
 from src.element.notes_elements import notes_elements
 from src.element.bottom_appbar import bottom_app_bar
 

@@ -1,4 +1,4 @@
-from src.styles.text_styles import WEATHER_TEXT
+from src.styles.button_styles import PRIMARY_BUTTON_STYLE
 from src.styles.weather_card_styles import *
 from src.api.weather_api import get_forecast
 from src.data.city import CITIES
@@ -124,7 +124,7 @@ def weather_element():
         controls=[
             ft.Row(
                 controls=[
-                    ft.Text("Щоб дізнатися погоду оберіть місто", weight= ft.FontWeight.BOLD , size= 20),
+                    ft.Text("Щоб дізнатися погоду оберіть місто", weight=ft.FontWeight.BOLD, size=20),
                     ft.Dropdown(
                         **CITY_DROPDOWN,
                         options=[
@@ -136,11 +136,7 @@ def weather_element():
                     ft.Button(
                         "Шукати погоду",
                         on_click=on_search,
-                        style=ft.ButtonStyle(
-                            color=ft.Colors.WHITE,
-                            bgcolor=ft.Colors.DEEP_PURPLE_400,
-                            shape=ft.RoundedRectangleBorder(radius=24),
-                        ),
+                        style=PRIMARY_BUTTON_STYLE,
                     ),
                 ],
                 spacing=10,

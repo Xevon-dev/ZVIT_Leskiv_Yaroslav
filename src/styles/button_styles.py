@@ -1,6 +1,5 @@
 import flet as ft
 
-# Головна кнопка (наприклад "Шукати погоду") — ширша, квадратніша
 PRIMARY_BUTTON_STYLE = ft.ButtonStyle(
     color=ft.Colors.WHITE,
     bgcolor=ft.Colors.BLUE_500,
@@ -15,7 +14,6 @@ PRIMARY_BUTTON_STYLE = ft.ButtonStyle(
     ),
 )
 
-# Навігаційні кнопки в AppBar — ширші, з тінню, виразніші
 NAV_BUTTON_STYLE = ft.ButtonStyle(
     color=ft.Colors.BLUE_700,
     bgcolor=ft.Colors.WHITE,

@@ -1,9 +1,10 @@
 import datetime
-import flet as ft
 from src.styles.card_styles_notes import *
 from src.models.notes_logic import *
 from src.element.note_card import build_note_card
 from src.data.user_json import read_json, save_json
+from src.styles.field_styles import INPUT_FIELD_STYLE
+from src.styles.dropdown_note_style import WEATHER_DROPDOWN
 
 
 def notes_elements(page: ft.Page):
@@ -29,27 +30,27 @@ def notes_elements(page: ft.Page):
     notes = load_notes()
 
     dd_weather = ft.Dropdown(
-        label="Погода",
+        **WEATHER_DROPDOWN,
         dense=True,
         expand=True,
         options=[
-            ft.DropdownOption(key="sun",   text="Сонячно"),
+            ft.DropdownOption(key="sun", text="Сонячно"),
             ft.DropdownOption(key="cloud", text="Хмарно"),
-            ft.DropdownOption(key="rain",  text="Дощ"),
-            ft.DropdownOption(key="wind",  text="Вітряно"),
+            ft.DropdownOption(key="rain", text="Дощ"),
+            ft.DropdownOption(key="wind", text="Вітряно"),
         ],
     )
 
     weather_error = ft.Text(value="", visible=False, size=12, color=ft.Colors.RED)
 
-    tf_fish   = ft.TextField(label="Риба",      expand=True)
-    tf_weight = ft.TextField(label="Вага (кг)", expand=True)
-    tf_place  = ft.TextField(label="Місце",     expand=True)
-    tf_bait   = ft.TextField(label="Наживка",   expand=True)
-    tf_desc   = ft.TextField(label="Опис", multiline=True, min_lines=2, max_lines=3, expand=True)
+    tf_fish = ft.TextField(label="Риба", expand=True, **INPUT_FIELD_STYLE)
+    tf_weight = ft.TextField(label="Вага (кг)", expand=True, **INPUT_FIELD_STYLE)
+    tf_place = ft.TextField(label="Місце", expand=True, **INPUT_FIELD_STYLE)
+    tf_bait = ft.TextField(label="Наживка", expand=True, **INPUT_FIELD_STYLE)
+    tf_desc = ft.TextField(label="Опис", multiline=True, min_lines=2, max_lines=3, expand=True, **INPUT_FIELD_STYLE)
 
     date_label = ft.Text(value=now.strftime("%d.%m.%Y"), size=14)
-    time_label = ft.Text(value=now.strftime("%H:%M"),    size=14)
+    time_label = ft.Text(value=now.strftime("%H:%M"), size=14)
 
     date_picker = ft.DatePicker(
         value=now,
@@ -62,9 +63,8 @@ def notes_elements(page: ft.Page):
 
     notes_column = ft.Column(spacing=10, expand=True)
 
-    sort_field   = {"value": None}
+    sort_field = {"value": None}
     sort_reverse = {"value": False}
-
 
     def get_sort_value(note):
         field = sort_field["value"]
@@ -78,15 +78,12 @@ def notes_elements(page: ft.Page):
 
     def refresh_list():
         data = notes[:]
-
         if sort_field["value"]:
             data.sort(key=get_sort_value, reverse=sort_reverse["value"])
-
         notes_column.controls = []
         for note in data:
             card = build_note_card(note, on_delete=delete_note, on_edit=edit_note)
             notes_column.controls.append(card)
-
         page.update()
 
     def sort_by(field):
@@ -109,8 +106,6 @@ def notes_elements(page: ft.Page):
     def sort_by_weight(e):
         sort_by("weight")
 
-    # ── Дата / час ──
-
     def open_date_picker(e):
         page.show_dialog(date_picker)
 
@@ -131,26 +126,25 @@ def notes_elements(page: ft.Page):
     time_picker.on_change = on_time_change
 
     def clear_form():
-        tf_fish.value    = ""
-        tf_weight.value  = ""
-        tf_place.value   = ""
-        tf_bait.value    = ""
-        tf_desc.value    = ""
+        tf_fish.value = ""
+        tf_weight.value = ""
+        tf_place.value = ""
+        tf_bait.value = ""
+        tf_desc.value = ""
         dd_weather.value = None
 
-        tf_fish.error    = None
-        tf_weight.error  = None
-        tf_place.error   = None
-        tf_bait.error    = None
-        tf_desc.error    = None
+        tf_fish.error = None
+        tf_weight.error = None
+        tf_place.error = None
+        tf_bait.error = None
+        tf_desc.error = None
 
         dd_weather.border_color = None
-        dd_weather.label_style  = None
-        weather_error.visible   = False
+        dd_weather.label_style = None
+        weather_error.visible = False
 
         date_label.value = now.strftime("%d.%m.%Y")
         time_label.value = now.strftime("%H:%M")
-
 
     def delete_note(note):
         notes.remove(note)
@@ -158,11 +152,11 @@ def notes_elements(page: ft.Page):
         refresh_list()
 
     def edit_note(note):
-        tf_fish.value    = note["fish"]
-        tf_weight.value  = note["weight"]
-        tf_place.value   = note["place"]
-        tf_bait.value    = note["bait"]
-        tf_desc.value    = note["desc"]
+        tf_fish.value = note["fish"]
+        tf_weight.value = note["weight"]
+        tf_place.value = note["place"]
+        tf_bait.value = note["bait"]
+        tf_desc.value = note["desc"]
         dd_weather.value = note["weather"]
         date_label.value = note["date"]
         time_label.value = note["time"]
@@ -171,11 +165,11 @@ def notes_elements(page: ft.Page):
         refresh_list()
 
     def save_note(e):
-        tf_fish.error   = validate_fish(tf_fish.value)
+        tf_fish.error = validate_fish(tf_fish.value)
         tf_weight.error = validate_weight(tf_weight.value)
-        tf_place.error  = validate_place(tf_place.value)
-        tf_bait.error   = validate_bait(tf_bait.value)
-        tf_desc.error   = validate_desc(tf_desc.value)
+        tf_place.error = validate_place(tf_place.value)
+        tf_bait.error = validate_bait(tf_bait.value)
+        tf_desc.error = validate_desc(tf_desc.value)
 
         has_error = any([
             tf_fish.error,
@@ -188,28 +182,28 @@ def notes_elements(page: ft.Page):
         weather_err = validate_weather(dd_weather.value)
         if weather_err:
             dd_weather.border_color = ft.Colors.RED
-            dd_weather.label_style  = ft.TextStyle(color=ft.Colors.RED)
-            weather_error.value     = weather_err
-            weather_error.visible   = True
+            dd_weather.label_style = ft.TextStyle(color=ft.Colors.RED)
+            weather_error.value = weather_err
+            weather_error.visible = True
             has_error = True
         else:
             dd_weather.border_color = None
-            dd_weather.label_style  = None
-            weather_error.visible   = False
+            dd_weather.label_style = None
+            weather_error.visible = False
 
         if has_error:
             page.update()
             return
 
         new_note = {
-            "fish":    tf_fish.value.strip(),
-            "weight":  tf_weight.value.strip(),
-            "place":   tf_place.value.strip(),
-            "bait":    tf_bait.value.strip(),
-            "desc":    tf_desc.value.strip(),
+            "fish": tf_fish.value.strip(),
+            "weight": tf_weight.value.strip(),
+            "place": tf_place.value.strip(),
+            "bait": tf_bait.value.strip(),
+            "desc": tf_desc.value.strip(),
             "weather": dd_weather.value,
-            "date":    date_label.value,
-            "time":    time_label.value,
+            "date": date_label.value,
+            "time": time_label.value,
         }
 
         notes.append(new_note)
@@ -219,46 +213,56 @@ def notes_elements(page: ft.Page):
 
     refresh_list()
 
-    left = ft.Column(
-        width=280,
-        spacing=8,
-        controls=[
-            ft.Text("Запишіть нотатки", **SECTION_TITLE),
-            dd_weather,
-            weather_error,
-            tf_fish,
-            tf_weight,
-            tf_place,
-            tf_bait,
-            tf_desc,
-            ft.Row(
-                spacing=8,
-                vertical_alignment=ft.CrossAxisAlignment.CENTER,
-                controls=[
-                    ft.Text("Оберіть дату", size=14),
-                    ft.IconButton(
-                        icon=ft.Icons.CALENDAR_MONTH,
-                        tooltip="Обрати дату",
-                        on_click=open_date_picker,
-                    ),
-                    date_label,
-                ],
-            ),
-            ft.Row(
-                spacing=8,
-                vertical_alignment=ft.CrossAxisAlignment.CENTER,
-                controls=[
-                    ft.Text("Оберіть час", size=14),
-                    ft.IconButton(
-                        icon=ft.Icons.ACCESS_TIME,
-                        tooltip="Обрати час",
-                        on_click=open_time_picker,
-                    ),
-                    time_label,
-                ],
-            ),
-            ft.Button("Зберегти нотатку", icon=ft.Icons.SAVE, on_click=save_note),
-        ],
+    left = ft.Container(
+        **FORM_CONTAINER,
+        width=300,
+        content=ft.Column(
+            spacing=10,
+            controls=[
+                ft.Text("Запишіть нотатки", **SECTION_TITLE),
+                dd_weather,
+                weather_error,
+                tf_fish,
+                tf_weight,
+                tf_place,
+                tf_bait,
+                tf_desc,
+                ft.Row(
+                    spacing=8,
+                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                    controls=[
+                        ft.Text("Оберіть дату:", **DATE_TIME_TEXT),
+                        ft.IconButton(
+                            icon=ft.Icons.CALENDAR_MONTH,
+                            tooltip="Обрати дату",
+                            icon_color=ft.Colors.BLUE_500,
+                            on_click=open_date_picker,
+                        ),
+                        date_label,
+                    ],
+                ),
+                ft.Row(
+                    spacing=8,
+                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                    controls=[
+                        ft.Text("Оберіть час:", **DATE_TIME_TEXT),
+                        ft.IconButton(
+                            icon=ft.Icons.ACCESS_TIME,
+                            tooltip="Обрати час",
+                            icon_color=ft.Colors.BLUE_500,
+                            on_click=open_time_picker,
+                        ),
+                        time_label,
+                    ],
+                ),
+                ft.Button(
+                    "Зберегти нотатку",
+                    icon=ft.Icons.SAVE,
+                    style=SAVE_BUTTON_STYLE,
+                    on_click=save_note,
+                ),
+            ],
+        ),
     )
 
     right = ft.Column(
@@ -272,10 +276,10 @@ def notes_elements(page: ft.Page):
                     ft.Text("Сортувати за:", size=14,
                             color=ft.Colors.BLUE_GREY_600,
                             weight=ft.FontWeight.W_500),
-                    ft.Button("Датою",  **SORT_BUTTON, on_click=sort_by_date),
-                    ft.Button("Часом",  **SORT_BUTTON, on_click=sort_by_time),
+                    ft.Button("Датою", **SORT_BUTTON, on_click=sort_by_date),
+                    ft.Button("Часом", **SORT_BUTTON, on_click=sort_by_time),
                     ft.Button("Уловом", **SORT_BUTTON, on_click=sort_by_fish),
-                    ft.Button("Вагою",  **SORT_BUTTON, on_click=sort_by_weight),
+                    ft.Button("Вагою", **SORT_BUTTON, on_click=sort_by_weight),
                 ],
             ),
             ft.Column(

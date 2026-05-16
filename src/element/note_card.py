@@ -1,19 +1,17 @@
-import flet as ft
 from src.styles.card_styles_notes import *
 
-
 WEATHER_ICONS = {
-    "sun":   ft.Icons.WB_SUNNY_OUTLINED,
+    "sun": ft.Icons.WB_SUNNY_OUTLINED,
     "cloud": ft.Icons.CLOUD_OUTLINED,
-    "rain":  ft.Icons.UMBRELLA,
-    "wind":  ft.Icons.AIR,
+    "rain": ft.Icons.UMBRELLA,
+    "wind": ft.Icons.AIR,
 }
 
 WEATHER_LABELS = {
-    "sun":   "Сонячно",
+    "sun": "Сонячно",
     "cloud": "Хмарно",
-    "rain":  "Дощ",
-    "wind":  "Вітряно",
+    "rain": "Дощ",
+    "wind": "Вітряно",
 }
 
 
@@ -41,7 +39,7 @@ def build_note_card(note: dict, on_delete, on_edit):
                             ft.Row(
                                 spacing=0,
                                 controls=[
-                                    ft.IconButton(**EDIT_ICON,   on_click=handle_edit),
+                                    ft.IconButton(**EDIT_ICON, on_click=handle_edit),
                                     ft.IconButton(**DELETE_ICON, on_click=handle_delete),
                                 ],
                             ),
@@ -50,18 +48,17 @@ def build_note_card(note: dict, on_delete, on_edit):
 
                     ft.Divider(height=1, color=ft.Colors.BLUE_GREY_100),
 
-
                     ft.Row(
                         spacing=8,
                         controls=[
                             ft.Icon(ft.Icons.LOCATION_ON_OUTLINED, size=16, color=ft.Colors.BLUE_GREY_400),
                             ft.Text(note["place"], **NOTE_DETAIL_TEXT),
                             ft.Container(width=12),
-                            ft.Icon(WEATHER_ICONS.get(weather_key, ft.Icons.HELP_OUTLINE), size=16, color=ft.Colors.BLUE_GREY_400),
+                            ft.Icon(WEATHER_ICONS.get(weather_key, ft.Icons.HELP_OUTLINE), size=16,
+                                    color=ft.Colors.BLUE_GREY_400),
                             ft.Text(WEATHER_LABELS.get(weather_key, ""), **NOTE_DETAIL_TEXT),
                         ],
                     ),
-
 
                     ft.Row(
                         spacing=8,
@@ -71,9 +68,7 @@ def build_note_card(note: dict, on_delete, on_edit):
                         ],
                     ),
 
-
                     ft.Text(note["desc"], **NOTE_DESC_TEXT, visible=bool(note.get("desc"))),
-
 
                     ft.Row(
                         spacing=6,
