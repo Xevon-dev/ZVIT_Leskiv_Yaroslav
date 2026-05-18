@@ -3,8 +3,9 @@ import flet as ft
 
 def bottom_app_bar():
     return ft.BottomAppBar(
-        bgcolor=ft.Colors.BLUE_GREY_900,
-        height=52,
+        bgcolor=ft.Colors.INDIGO_800,
+        height=60,
+        border_radius=ft.BorderRadius.only(top_left=16, top_right=16),
         content=ft.Row(
             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
             vertical_alignment=ft.CrossAxisAlignment.CENTER,
@@ -25,25 +26,25 @@ def bottom_app_bar():
                 ),
 
                 ft.Row(
-                    spacing=0,
+                    spacing=5,
                     controls=[
                         ft.IconButton(
                             icon=ft.Icons.FACEBOOK,
                             icon_color=ft.Colors.LIGHT_BLUE_300,
                             icon_size=18,
-                            url="https://facebook.com",
+                            url="https://www.facebook.com/groups/fishingplt/posts/3785674695090700/",
                         ),
                         ft.IconButton(
                             icon=ft.Icons.TELEGRAM,
                             icon_color=ft.Colors.LIGHT_BLUE_300,
                             icon_size=18,
-                            url="https://t.me",
+                            url="https://t.me/+yUr_G2z4nHZiZmJi",
                         ),
                         ft.IconButton(
                             icon=ft.Icons.PLAY_CIRCLE,
                             icon_color=ft.Colors.LIGHT_BLUE_300,
                             icon_size=18,
-                            url="https://instagram.com",
+                            url="https://www.youtube.com/@Nazar_Bozhenko",
                         ),
                     ],
                 ),

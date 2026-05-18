@@ -60,6 +60,7 @@ class RegisterView(ft.View):
 
         super().__init__(
             route="/register",
+            padding=0,
             controls=[
                 ft.AppBar(
                     ft.IconButton(

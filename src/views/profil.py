@@ -7,23 +7,29 @@ class ProfileView(ft.View):
     def __init__(self, page):
         super().__init__(
             route="/profile",
+            padding=0,
             controls=[
-                ft.AppBar(
-                    title=ft.Text("Профіль"),
-
-                    leading=ft.IconButton(
-                        icon=ft.Icons.ARROW_BACK,
-                        on_click=self.go_home
-                    ),
-                ),
                 ft.Column(
-                    controls=[
-                        ft.Divider(),
-                    profile_elements(page)
-                    ],
                     expand=True,
-                ),
-                bottom_app_bar()
+                    spacing=0,
+                    controls=[
+                        ft.AppBar(
+                            title=ft.Text("Профіль"),
+                            leading=ft.IconButton(
+                                icon=ft.Icons.ARROW_BACK,
+                                on_click=self.go_home
+                            ),
+                        ),
+                        ft.Column(
+                            controls=[
+                                ft.Divider(),
+                                profile_elements(page)
+                            ],
+                            expand=True,
+                        ),
+                        bottom_app_bar()
+                    ]
+                )
             ]
         )
 

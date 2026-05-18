@@ -38,6 +38,7 @@ class LoginView(ft.View):
 
         super().__init__(
             route="/login",
+            padding=0,
             controls=[
                 ft.AppBar(
                     ft.IconButton(

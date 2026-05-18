@@ -1,6 +1,6 @@
 {
-    "user_authorized": false,
-    "current_user": "",
+    "user_authorized": true,
+    "current_user": "andrii",
     "users": [
         {
             "login": "jdfgsdf",

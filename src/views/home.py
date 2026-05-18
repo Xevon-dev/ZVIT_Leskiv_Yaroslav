@@ -41,8 +41,11 @@ class HomeView(ft.View):
 
         super().__init__(
             route="/home",
+            padding=0,
             controls=[
                 ft.Column(
+                    expand=True,
+                    spacing=0,
                     controls=[
                         ft.AppBar(
                             leading=ft.IconButton(
