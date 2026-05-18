@@ -1,6 +1,6 @@
 {
-    "user_authorized": true,
-    "current_user": "andrii",
+    "user_authorized": false,
+    "current_user": "",
     "users": [
         {
             "login": "jdfgsdf",
@@ -102,6 +102,20 @@
             "email": "qzdcwerty@gmail.com",
             "parol": "sdfsdfs34",
             "created_at": "14.05.2026",
+            "notes": []
+        },
+        {
+            "login": "andrii",
+            "email": "andrii@gmail.com",
+            "parol": "andrii1",
+            "created_at": "17.05.2026",
+            "notes": []
+        },
+        {
+            "login": "andrii",
+            "email": "andrii@gmail.com",
+            "parol": "andrii1",
+            "created_at": "17.05.2026",
             "notes": []
         }
     ]
