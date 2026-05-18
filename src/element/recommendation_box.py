@@ -19,7 +19,7 @@ def get_recommendation(wind, precip, pressure):
         lines.append("☀️ Без опадів - сприятливо для риболовлі.")
 
     if 750 <= pressure <= 760:
-        lines.append("🔵 Тиск стабільний - відмінний кльов!")
+        lines.append("🔵 Тиск стабільний - можливий кльов!")
     elif pressure < 748:
         lines.append("🔵 Тиск низький - риба пасивна, кльов слабкий.")
     else:

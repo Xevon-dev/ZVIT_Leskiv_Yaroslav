@@ -8,6 +8,8 @@ CITY_DROPDOWN = {
     "filled": True,
     "fill_color": ft.Colors.WHITE,
     "label": "Місто",
+    "editable": True,
+    "enable_filter": True,
     "label_style": ft.TextStyle(
         color=ft.Colors.BLUE_GREY_400,
         size=14,

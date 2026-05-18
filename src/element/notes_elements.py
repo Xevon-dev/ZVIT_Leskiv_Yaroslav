@@ -97,12 +97,6 @@ def notes_elements(page: ft.Page):
     def sort_by_date(e):
         sort_by("date")
 
-    def sort_by_time(e):
-        sort_by("time")
-
-    def sort_by_fish(e):
-        sort_by("fish")
-
     def sort_by_weight(e):
         sort_by("weight")
 
@@ -277,8 +271,6 @@ def notes_elements(page: ft.Page):
                             color=ft.Colors.BLUE_GREY_600,
                             weight=ft.FontWeight.W_500),
                     ft.Button("Датою", **SORT_BUTTON, on_click=sort_by_date),
-                    ft.Button("Часом", **SORT_BUTTON, on_click=sort_by_time),
-                    ft.Button("Уловом", **SORT_BUTTON, on_click=sort_by_fish),
                     ft.Button("Вагою", **SORT_BUTTON, on_click=sort_by_weight),
                 ],
             ),
