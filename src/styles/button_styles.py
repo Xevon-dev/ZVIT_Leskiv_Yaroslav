@@ -37,3 +37,11 @@ TEXT_BUTTON_STYLE = ft.ButtonStyle(
         weight=ft.FontWeight.W_500,
     ),
 )
+
+DETAIL_BUTTON_STYLE = ft.ButtonStyle(
+    bgcolor=ft.Colors.BLUE_600,
+    overlay_color=ft.Colors.with_opacity(0.15, ft.Colors.WHITE),
+    elevation=2,
+    shape=ft.RoundedRectangleBorder(radius=8),
+    padding=ft.Padding.symmetric(horizontal=12, vertical=8),
+)

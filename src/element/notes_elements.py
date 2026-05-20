@@ -54,11 +54,11 @@ def notes_elements(page: ft.Page):
 
     date_picker = ft.DatePicker(
         value=now,
-        locale=ft.Locale("uk", "UA"),
+        locale=ft.Locale("uk"),
     )
     time_picker = ft.TimePicker(
         value=datetime.time(now.hour, now.minute),
-        locale=ft.Locale("uk", "UA"),
+        locale=ft.Locale("uk"),
     )
 
     notes_column = ft.Column(spacing=10, expand=True)
