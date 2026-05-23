@@ -166,6 +166,8 @@ def weather_element():
             print(f"Помилка: {a}")
 
     return ft.Column(
+        expand=True,
+        scroll=ft.ScrollMode.AUTO,
         controls=[
             ft.Row(
                 controls=[
