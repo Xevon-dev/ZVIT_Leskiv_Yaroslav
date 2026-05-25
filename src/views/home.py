@@ -54,26 +54,25 @@ class HomeView(ft.View):
                                 on_click=self.open_drawer,
                             ),
                             title=app_title,
-                            bgcolor=ft.Colors.WHITE,
                             actions=[
                                 ft.Row(
                                     controls=[
-                                        ft.ElevatedButton(
+                                        ft.Button(
                                             "Профіль",
                                             style=NAV_BUTTON_STYLE,
                                             on_click=self.go_profile,
                                         ),
-                                        ft.ElevatedButton(
+                                        ft.Button(
                                             "Нотатки рибака",
                                             style=NAV_BUTTON_STYLE,
                                             on_click=self.go_to_login,
                                         ),
-                                        ft.ElevatedButton(
+                                        ft.Button(
                                             "Прогноз кльову",
                                             style=NAV_BUTTON_STYLE,
                                             on_click=self.go_to_fishing_weather,
                                         ),
-                                        ft.ElevatedButton(
+                                        ft.Button(
                                             "Енциклопедія",
                                             style=NAV_BUTTON_STYLE,
                                             on_click=self.go_encyclopedia,
