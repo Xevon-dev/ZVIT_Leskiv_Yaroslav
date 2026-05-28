@@ -1,4 +1,5 @@
 import flet as ft
+import bcrypt
 from src.styles.styles_container import FORM_LOGIN_STYLE
 from src.styles.text_styles import TITLE_TEXT, SUBTITLE_TEXT
 from src.styles.field_styles import INPUT_FIELD_STYLE
@@ -94,7 +95,7 @@ class LoginView(ft.View):
         user_found = None
 
         for user in dani["users"]:
-            if user["login"] == login and user["parol"] == password:
+            if user["login"] == login and bcrypt.checkpw(password.encode(), user["parol"].encode()):
                 user_found = user
                 break
 

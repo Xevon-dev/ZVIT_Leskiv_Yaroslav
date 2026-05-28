@@ -2,6 +2,7 @@ import flet as ft
 from src.models.audit_register_login import valid_email, audit_parol_letters, audit_parol_numbers
 from src.data.user_json import read_json, save_json
 from datetime import datetime
+import bcrypt
 
 from src.styles.styles_container import FORM_REGISTER_STYLE
 from src.styles.text_styles import TITLE_TEXT, SUBTITLE_TEXT
@@ -159,7 +160,7 @@ class RegisterView(ft.View):
         new_user = {
             "login": audit_user_login,
             "email": audit_user_email,
-            "parol": audit_user_parol,
+            "parol":  bcrypt.hashpw(audit_user_parol.encode(), bcrypt.gensalt()).decode(),
             "created_at": datetime.now().strftime("%d.%m.%Y"),
             "notes": []
         }
