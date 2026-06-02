@@ -1,4 +1,4 @@
-import flet as ft
+
 from src.styles.card_styles_home import *
 from src.api.weather_api import get_forecast
 from src.styles.dropdown_styles import CITY_DROPDOWN

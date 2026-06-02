@@ -1,5 +1,5 @@
 from datetime import datetime
-import flet as ft
+import bcrypt
 from src.styles.profile_style import *
 from src.styles.field_styles import INPUT_FIELD_STYLE
 from src.data.user_json import read_json, save_json
@@ -70,8 +70,20 @@ def profile_elements(page: ft.Page):
     display_email = ft.Text(current_user["email"], **EMAIL_TEXT)
 
     edit_btn = ft.Button("Редагувати", icon=ft.Icons.EDIT_OUTLINED, on_click=None)
-    save_btn = ft.Button("Зберегти", icon=ft.Icons.SAVE, style=SAVE_BUTTON_STYLE, visible=False, on_click=None)
-    cancel_btn = ft.TextButton("Скасувати", visible=False, on_click=None)
+
+    save_btn = ft.Button(
+        "Зберегти",
+        icon=ft.Icons.SAVE,
+        style=SAVE_BUTTON_STYLE,
+        visible=False,
+        on_click=None,
+    )
+
+    cancel_btn = ft.TextButton(
+        "Скасувати",
+        visible=False,
+        on_click=None,
+    )
 
     def toggle_edit(e=None):
         is_edit = not tf_email.visible
@@ -89,12 +101,14 @@ def profile_elements(page: ft.Page):
             tf_password.error = None
             tf_password_confirm.error = None
 
+        page.update()
     def save_changes(e):
         new_email = tf_email.value.strip()
         new_pass = tf_password.value
 
         if not valid_email(new_email):
             tf_email.error = "Введіть коректний email"
+            page.update()
             return
         else:
             tf_email.error = None
@@ -102,35 +116,56 @@ def profile_elements(page: ft.Page):
         if new_pass:
             if len(new_pass) < 5:
                 tf_password.error = "Мінімум 5 символів"
+                page.update()
                 return
+
             elif not audit_parol_letters(new_pass):
                 tf_password.error = "Додайте літери"
+                page.update()
                 return
+
             elif not audit_parol_numbers(new_pass):
                 tf_password.error = "Додайте цифри"
+                page.update()
                 return
+
             else:
                 tf_password.error = None
+
             if new_pass != tf_password_confirm.value:
                 tf_password_confirm.error = "Паролі не співпадають"
+                page.update()
                 return
             else:
                 tf_password_confirm.error = None
 
         current_user["email"] = new_email
+
+        hashed_password = None
+
         if new_pass:
-            current_user["parol"] = new_pass
+            hashed_password = bcrypt.hashpw(
+                new_pass.encode(),
+                bcrypt.gensalt()
+            ).decode()
+
+            current_user["parol"] = hashed_password
 
         data = read_json()
+
         for i in data["users"]:
             if i["login"] == current_login:
                 i["email"] = new_email
+
                 if new_pass:
-                    i["parol"] = new_pass
+                    i["parol"] = hashed_password
+
                 break
+
         save_json(data)
 
         display_email.value = new_email
+
         toggle_edit()
 
         dialog = ft.AlertDialog(
@@ -142,7 +177,10 @@ def profile_elements(page: ft.Page):
         def close_dialog(e):
             page.pop_dialog()
 
-        dialog.actions = [ft.TextButton("OK", on_click=close_dialog)]
+        dialog.actions = [
+            ft.TextButton("OK", on_click=close_dialog)
+        ]
+
         page.show_dialog(dialog)
 
     async def do_logout(e):
@@ -195,7 +233,10 @@ def profile_elements(page: ft.Page):
                 tf_email,
                 tf_password,
                 tf_password_confirm,
-                ft.Row(controls=[save_btn, cancel_btn], **EDIT_BUTTON_ROW),
+                ft.Row(
+                    controls=[save_btn, cancel_btn],
+                    **EDIT_BUTTON_ROW,
+                ),
             ],
         ),
     )
@@ -206,7 +247,10 @@ def profile_elements(page: ft.Page):
             **TOP_CARD_ROW,
             controls=[
                 left_panel,
-                ft.VerticalDivider(width=1, color=ft.Colors.BLUE_GREY_100),
+                ft.VerticalDivider(
+                    width=1,
+                    color=ft.Colors.BLUE_GREY_100
+                ),
                 right_panel,
             ],
         ),
@@ -228,8 +272,14 @@ def profile_elements(page: ft.Page):
                             ft.Row(
                                 **BANNER_ICON_ROW,
                                 controls=[
-                                    ft.Icon(ft.Icons.PHISHING, **BANNER_ICON),
-                                    ft.Text("Рибальський застосунок", **BANNER_TITLE_TEXT),
+                                    ft.Icon(
+                                        ft.Icons.PHISHING,
+                                        **BANNER_ICON
+                                    ),
+                                    ft.Text(
+                                        "Рибальський застосунок",
+                                        **BANNER_TITLE_TEXT,
+                                    ),
                                 ],
                             ),
                             ft.Text(
